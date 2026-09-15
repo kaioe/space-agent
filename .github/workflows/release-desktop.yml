@@ -29,7 +29,7 @@ jobs:
       release_body: ${{ steps.release_notes.outputs.release_body }}
       previous_tag: ${{ steps.release_context.outputs.previous_tag }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
@@ -204,14 +204,14 @@ jobs:
             runner: macos-latest
             script: macos-package.js
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: refs/tags/${{ needs.prepare.outputs.release_tag }}
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
           cache-dependency-path: |
             package-lock.json
@@ -260,7 +260,7 @@ jobs:
     if: needs.prepare.outputs.should_release == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: refs/tags/${{ needs.prepare.outputs.release_tag }}
 
@@ -268,9 +268,9 @@ jobs:
         with:
           path: release-assets
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Merge updater metadata
         run: node packaging/scripts/release-metadata-merge.js release-assets
