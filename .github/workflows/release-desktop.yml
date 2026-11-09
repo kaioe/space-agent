@@ -211,7 +211,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
           cache-dependency-path: |
             package-lock.json
@@ -270,7 +270,7 @@ jobs:
 
       - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
 
       - name: Merge updater metadata
         run: node packaging/scripts/release-metadata-merge.js release-assets
